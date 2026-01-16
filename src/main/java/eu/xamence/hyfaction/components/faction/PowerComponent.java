@@ -51,6 +51,6 @@ public class PowerComponent implements Component<EntityStore> {
     @Nullable
     @Override
     public Component<EntityStore> clone() {
-        return null;
+        return new PowerComponent(current, max);
     }
 }

@@ -10,7 +10,6 @@ import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import eu.xamence.hyfaction.HyFaction;
 import eu.xamence.hyfaction.components.faction.FactionIdentityComponent;
 import eu.xamence.hyfaction.components.faction.PowerComponent;
-import eu.xamence.hyfaction.components.faction.VulnerableComponent;
 import eu.xamence.hyfaction.resources.ClaimRegistryResource;
 
 import javax.annotation.Nonnull;

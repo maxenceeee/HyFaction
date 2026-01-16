@@ -10,8 +10,10 @@ import eu.xamence.hyfaction.components.faction.FactionIdentityComponent;
 import eu.xamence.hyfaction.components.faction.HomeComponent;
 import eu.xamence.hyfaction.components.faction.PowerComponent;
 import eu.xamence.hyfaction.components.faction.VulnerableComponent;
+import eu.xamence.hyfaction.components.player.MemberFactionComponent;
 import eu.xamence.hyfaction.resources.ClaimRegistryResource;
 import eu.xamence.hyfaction.systems.OverclaimSystem;
+import eu.xamence.hyfaction.systems.PowerRegenSystem;
 
 import javax.annotation.Nonnull;
 
@@ -23,6 +25,8 @@ public class HyFaction extends JavaPlugin {
     private ComponentType<EntityStore, HomeComponent> homeComponentComponentType;
     private ComponentType<EntityStore, PowerComponent> powerComponentComponentType;
     private ComponentType<EntityStore, VulnerableComponent> vulnerableComponentComponentType;
+
+    private ComponentType<EntityStore, MemberFactionComponent> memberFactionComponentComponentType;
 
     private ResourceType<EntityStore, ClaimRegistryResource> claimRegistryResourceResourceType;
 
@@ -46,6 +50,8 @@ public class HyFaction extends JavaPlugin {
         this.homeComponentComponentType = getEntityStoreRegistry().registerComponent(HomeComponent.class, "Home", HomeComponent.CODEC);
         this.powerComponentComponentType = getEntityStoreRegistry().registerComponent(PowerComponent.class, "Power", PowerComponent.CODEC);
         this.vulnerableComponentComponentType = getEntityStoreRegistry().registerComponent(VulnerableComponent.class, "Vulnerable", VulnerableComponent.CODEC);
+
+        this.memberFactionComponentComponentType = getEntityStoreRegistry().registerComponent(MemberFactionComponent.class, "MemberFaction", MemberFactionComponent.CODEC);
     }
 
     private void loadResources() {
@@ -54,6 +60,7 @@ public class HyFaction extends JavaPlugin {
 
     private void loadSystems() {
         getEntityStoreRegistry().registerSystem(new OverclaimSystem(this));
+        getEntityStoreRegistry().registerSystem(new PowerRegenSystem(this));
     }
 
 
@@ -72,6 +79,10 @@ public class HyFaction extends JavaPlugin {
 
     public ComponentType<EntityStore, VulnerableComponent> getVulnerableComponentComponentType() {
         return vulnerableComponentComponentType;
+    }
+
+    public ComponentType<EntityStore, MemberFactionComponent> getMemberFactionComponentComponentType() {
+        return memberFactionComponentComponentType;
     }
 
     public ResourceType<EntityStore, ClaimRegistryResource> getClaimRegistryResourceResourceType() {
