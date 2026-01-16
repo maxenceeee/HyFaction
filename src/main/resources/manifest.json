@@ -1,0 +1,18 @@
+{
+  "Group": "eu.xamence",
+  "Name": "HyFaction",
+  "Version": "0.0.1",
+  "Description": "A Hytale plugin/mods for faction server",
+  "Authors": [
+    {
+      "Name": "Xamence",
+      "Email": "your.email@example.com",
+      "Url": "http://www.xamence.fr/"
+    }
+  ],
+  "Website": "http://www.xamence.fr/",
+  "ServerVersion": "*",
+  "Dependencies": {},
+  "OptionalDependencies": {},
+  "DisabledByDefault": false
+}
