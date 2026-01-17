@@ -1,6 +1,7 @@
 package eu.xamence.hyfaction.systems;
 
 
+import com.hypixel.hytale.codec.builder.BuilderCodec;
 import com.hypixel.hytale.component.ArchetypeChunk;
 import com.hypixel.hytale.component.CommandBuffer;
 import com.hypixel.hytale.component.Store;
@@ -9,6 +10,7 @@ import com.hypixel.hytale.component.system.tick.EntityTickingSystem;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import eu.xamence.hyfaction.HyFaction;
 import eu.xamence.hyfaction.components.faction.FactionIdentityComponent;
+import eu.xamence.hyfaction.components.faction.HomeComponent;
 import eu.xamence.hyfaction.components.faction.PowerComponent;
 import eu.xamence.hyfaction.resources.ClaimRegistryResource;
 

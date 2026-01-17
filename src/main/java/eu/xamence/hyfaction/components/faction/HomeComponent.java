@@ -79,4 +79,5 @@ public class HomeComponent implements Component<EntityStore> {
     public Component<EntityStore> clone() {
         return new HomeComponent(worldName, x, y ,z);
     }
+
 }

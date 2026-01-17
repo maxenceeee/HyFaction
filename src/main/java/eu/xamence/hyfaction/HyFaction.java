@@ -11,9 +11,13 @@ import eu.xamence.hyfaction.components.faction.HomeComponent;
 import eu.xamence.hyfaction.components.faction.PowerComponent;
 import eu.xamence.hyfaction.components.faction.VulnerableComponent;
 import eu.xamence.hyfaction.components.player.MemberFactionComponent;
+import eu.xamence.hyfaction.components.world.ChunkLocationComponent;
+import eu.xamence.hyfaction.components.world.OwnershipComponent;
 import eu.xamence.hyfaction.resources.ClaimRegistryResource;
 import eu.xamence.hyfaction.resources.FactionRegistryResource;
+import eu.xamence.hyfaction.systems.ClaimSyncSystem;
 import eu.xamence.hyfaction.systems.OverclaimSystem;
+import eu.xamence.hyfaction.systems.PowerLossSystem;
 import eu.xamence.hyfaction.systems.PowerRegenSystem;
 
 import javax.annotation.Nonnull;
@@ -28,6 +32,9 @@ public class HyFaction extends JavaPlugin {
     private ComponentType<EntityStore, VulnerableComponent> vulnerableComponentComponentType;
 
     private ComponentType<EntityStore, MemberFactionComponent> memberFactionComponentComponentType;
+
+    private ComponentType<EntityStore, OwnershipComponent> ownershipComponentComponentType;
+    private ComponentType<EntityStore, ChunkLocationComponent> chunkLocationComponentComponentType;
 
     private ResourceType<EntityStore, ClaimRegistryResource> claimRegistryResourceResourceType;
     private ResourceType<EntityStore, FactionRegistryResource> factionRegistryResourceResourceType;
@@ -54,6 +61,9 @@ public class HyFaction extends JavaPlugin {
         this.vulnerableComponentComponentType = getEntityStoreRegistry().registerComponent(VulnerableComponent.class, "Vulnerable", VulnerableComponent.CODEC);
 
         this.memberFactionComponentComponentType = getEntityStoreRegistry().registerComponent(MemberFactionComponent.class, "MemberFaction", MemberFactionComponent.CODEC);
+
+        this.ownershipComponentComponentType = getEntityStoreRegistry().registerComponent(OwnershipComponent.class, "Ownership", OwnershipComponent.CODEC);
+        this.chunkLocationComponentComponentType = getEntityStoreRegistry().registerComponent(ChunkLocationComponent.class, "ChunkLocation", ChunkLocationComponent.CODEC);
     }
 
     private void loadResources() {
@@ -64,6 +74,8 @@ public class HyFaction extends JavaPlugin {
     private void loadSystems() {
         getEntityStoreRegistry().registerSystem(new OverclaimSystem(this));
         getEntityStoreRegistry().registerSystem(new PowerRegenSystem(this));
+        getEntityStoreRegistry().registerSystem(new PowerLossSystem(this));
+        getEntityStoreRegistry().registerSystem(new ClaimSyncSystem(this));
     }
 
 
@@ -86,6 +98,14 @@ public class HyFaction extends JavaPlugin {
 
     public ComponentType<EntityStore, MemberFactionComponent> getMemberFactionComponentComponentType() {
         return memberFactionComponentComponentType;
+    }
+
+    public ComponentType<EntityStore, OwnershipComponent> getOwnershipComponentComponentType() {
+        return ownershipComponentComponentType;
+    }
+
+    public ComponentType<EntityStore, ChunkLocationComponent> getChunkLocationComponentComponentType() {
+        return chunkLocationComponentComponentType;
     }
 
     public ResourceType<EntityStore, ClaimRegistryResource> getClaimRegistryResourceResourceType() {

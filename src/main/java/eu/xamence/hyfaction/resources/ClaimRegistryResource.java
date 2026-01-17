@@ -1,5 +1,6 @@
 package eu.xamence.hyfaction.resources;
 
+import com.hypixel.hytale.component.Ref;
 import com.hypixel.hytale.component.Resource;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 
@@ -11,13 +12,13 @@ import java.util.UUID;
 public class ClaimRegistryResource implements Resource<EntityStore> {
 
     // Chunk key to entity ID
-    private  Map<Long, Integer> chunkToEntityMap = new HashMap<>();
+    private  Map<Long, Ref<EntityStore>> chunkToEntityMap = new HashMap<>();
 
     // Faction entity ID to claim counts
     private  Map<UUID, Integer> factionClaimCount = new HashMap<>();
 
 
-    public void registerClaim(long chunkKey, int entityId, UUID factionId) {
+    public void registerClaim(long chunkKey, Ref<EntityStore> entityId, UUID factionId) {
         chunkToEntityMap.put(chunkKey, entityId);
         factionClaimCount.put(factionId, factionClaimCount.getOrDefault(factionId, 0) + 1);
     }
@@ -31,7 +32,7 @@ public class ClaimRegistryResource implements Resource<EntityStore> {
         }
     }
 
-    public Integer getClaimEntityAt(long chunkKey) {
+    public Ref<EntityStore> getClaimEntityAt(long chunkKey) {
         return chunkToEntityMap.get(chunkKey);
     }
 
