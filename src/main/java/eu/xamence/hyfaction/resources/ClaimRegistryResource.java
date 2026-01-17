@@ -10,11 +10,11 @@ import java.util.UUID;
 
 public class ClaimRegistryResource implements Resource<EntityStore> {
 
-    // Chunck key to entity ID
-    private final Map<Long, Integer> chunkToEntityMap = new HashMap<>();
+    // Chunk key to entity ID
+    private  Map<Long, Integer> chunkToEntityMap = new HashMap<>();
 
     // Faction entity ID to claim counts
-    private final Map<UUID, Integer> factionClaimCount = new HashMap<>();
+    private  Map<UUID, Integer> factionClaimCount = new HashMap<>();
 
 
     public void registerClaim(long chunkKey, int entityId, UUID factionId) {
@@ -43,6 +43,10 @@ public class ClaimRegistryResource implements Resource<EntityStore> {
     @Nullable
     @Override
     public Resource<EntityStore> clone() {
-        return null;
+        ClaimRegistryResource copy = new ClaimRegistryResource();
+        copy.chunkToEntityMap = this.chunkToEntityMap;
+        copy.factionClaimCount = this.factionClaimCount;
+
+        return copy;
     }
 }

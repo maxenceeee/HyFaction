@@ -12,6 +12,7 @@ import eu.xamence.hyfaction.components.faction.PowerComponent;
 import eu.xamence.hyfaction.components.faction.VulnerableComponent;
 import eu.xamence.hyfaction.components.player.MemberFactionComponent;
 import eu.xamence.hyfaction.resources.ClaimRegistryResource;
+import eu.xamence.hyfaction.resources.FactionRegistryResource;
 import eu.xamence.hyfaction.systems.OverclaimSystem;
 import eu.xamence.hyfaction.systems.PowerRegenSystem;
 
@@ -29,6 +30,7 @@ public class HyFaction extends JavaPlugin {
     private ComponentType<EntityStore, MemberFactionComponent> memberFactionComponentComponentType;
 
     private ResourceType<EntityStore, ClaimRegistryResource> claimRegistryResourceResourceType;
+    private ResourceType<EntityStore, FactionRegistryResource> factionRegistryResourceResourceType;
 
     public HyFaction(@Nonnull JavaPluginInit init) {
         super(init);
@@ -56,6 +58,7 @@ public class HyFaction extends JavaPlugin {
 
     private void loadResources() {
         this.claimRegistryResourceResourceType = getEntityStoreRegistry().registerResource(ClaimRegistryResource.class, ClaimRegistryResource::new);
+        this.factionRegistryResourceResourceType = getEntityStoreRegistry().registerResource(FactionRegistryResource.class, FactionRegistryResource::new);
     }
 
     private void loadSystems() {
@@ -87,5 +90,9 @@ public class HyFaction extends JavaPlugin {
 
     public ResourceType<EntityStore, ClaimRegistryResource> getClaimRegistryResourceResourceType() {
         return claimRegistryResourceResourceType;
+    }
+
+    public ResourceType<EntityStore, FactionRegistryResource> getFactionRegistryResourceResourceType() {
+        return factionRegistryResourceResourceType;
     }
 }
